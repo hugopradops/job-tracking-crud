@@ -86,7 +86,7 @@ export default function ApplicationTable({ applications, onEdit, onDelete }) {
                   <StatusBadge status={app.status} />
                 </td>
                 <td className="px-4 py-3 text-slate-500">{formatDate(app.date_applied)}</td>
-                <td className="max-w-[200px] truncate px-4 py-3 text-slate-500">
+                <td className="max-w-[200px] truncate px-4 py-3 text-slate-500" title={app.notes || undefined}>
                   {app.notes || '-'}
                 </td>
                 <td className="px-4 py-3">

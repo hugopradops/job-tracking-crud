@@ -1,6 +1,16 @@
+import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
 
 export default function DeleteDialog({ isOpen, application, onConfirm, onCancel, loading }) {
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') onCancel();
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onCancel]);
+
   if (!isOpen || !application) return null;
 
   return (
@@ -9,13 +19,16 @@ export default function DeleteDialog({ isOpen, application, onConfirm, onCancel,
       onClick={onCancel}
     >
       <div
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="delete-dialog-title"
         className="w-full max-w-sm rounded-xl bg-white px-6 py-6 text-center"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
           <AlertTriangle className="h-6 w-6 text-red-500" />
         </div>
-        <h3 className="text-lg font-bold text-foreground">Delete Application</h3>
+        <h3 id="delete-dialog-title" className="text-lg font-bold text-foreground">Delete Application</h3>
         <p className="mt-2 text-sm text-slate-500">
           Are you sure you want to delete the application for{' '}
           <span className="font-semibold text-foreground">{application.position}</span> at{' '}

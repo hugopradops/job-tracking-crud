@@ -23,11 +23,11 @@ export default function StatusFilter({ active, onChange }) {
           <button
             key={status.value}
             onClick={() => onChange(status.value)}
-            className={`min-h-[44px] min-w-[44px] rounded-lg px-4 py-2 text-sm font-semibold transition-default ${
+            className={`min-h-[44px] min-w-[44px] rounded-lg px-4 py-2 text-sm transition-default ${
               isActive
-                ? ACTIVE_COLORS[status.value]
-                : 'bg-white text-slate-600 hover:bg-slate-100'
-            } border border-slate-200`}
+                ? `${ACTIVE_COLORS[status.value]} font-bold border-transparent shadow-sm`
+                : 'bg-white text-slate-600 font-semibold hover:bg-slate-100 border border-slate-200'
+            }`}
           >
             {status.label}
           </button>

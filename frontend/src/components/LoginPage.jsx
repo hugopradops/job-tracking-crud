@@ -64,7 +64,7 @@ export default function LoginPage({ onLogin }) {
 
   if (checkingSetup) {
     return (
-      <div className="bg-dots flex min-h-screen items-center justify-center">
+      <div className="bg-dots flex min-h-dvh items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
@@ -73,7 +73,7 @@ export default function LoginPage({ onLogin }) {
   const isSetup = mode === 'setup';
 
   return (
-    <div className="bg-dots flex min-h-screen items-center justify-center px-4 py-12">
+    <div className="bg-dots flex min-h-dvh items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         {/* Logo + Subtitle */}
         <div className="mb-8 text-center">
@@ -197,7 +197,7 @@ export default function LoginPage({ onLogin }) {
 
             {/* Error */}
             {error && (
-              <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-600">
+              <div role="alert" className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-600">
                 <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{error}</span>
               </div>
@@ -216,11 +216,11 @@ export default function LoginPage({ onLogin }) {
           {/* Demo account callout — only show in demo mode on sign in */}
           {!isSetup && isDemo && (
             <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50/60 px-4 py-3.5">
-              <div className="mb-2 flex items-center gap-2 text-sm font-medium text-primary">
+              <div className="mb-2 flex items-center justify-center gap-2 text-sm font-medium text-primary">
                 <Info className="h-4 w-4" />
                 Want to explore? Use the demo account:
               </div>
-              <div className="space-y-2 pl-6">
+              <div className="space-y-2 flex flex-col items-center">
                 <div className="flex items-center gap-2 text-sm text-slate-600">
                   Email:{' '}
                   <button

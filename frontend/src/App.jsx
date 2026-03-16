@@ -19,7 +19,7 @@ function Toast({ message, type, onDismiss }) {
   if (!message) return null;
   const bg = type === 'error' ? 'bg-red-500' : 'bg-green-600';
   return (
-    <div className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2">
+    <div role="alert" aria-live="polite" className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2">
       <div
         className={`${bg} flex items-center gap-3 rounded-lg px-5 py-3 text-sm font-medium text-white`}
       >

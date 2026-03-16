@@ -66,18 +66,30 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
 
   const isEdit = !!application;
 
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
         className="w-full max-w-lg rounded-xl bg-white"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal header */}
         <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
-          <h2 className="text-lg font-bold text-foreground">
+          <h2 id="modal-title" className="text-lg font-bold text-foreground">
             {isEdit ? 'Edit Application' : 'Add Application'}
           </h2>
           <button
@@ -101,12 +113,12 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
               type="text"
               value={form.company}
               onChange={(e) => handleChange('company', e.target.value)}
-              className={`w-full rounded-lg border px-3 py-2.5 text-sm text-foreground placeholder:text-slate-400 transition-default focus:border-primary focus:ring-0 ${
+              className={`min-h-[44px] w-full rounded-lg border px-3 py-2.5 text-sm text-foreground placeholder:text-slate-400 transition-default focus:border-primary focus:ring-0 ${
                 errors.company ? 'border-red-400' : 'border-slate-200'
               }`}
               placeholder="e.g. Google"
             />
-            {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company}</p>}
+            {errors.company && <p role="alert" className="mt-1 text-xs text-red-500">{errors.company}</p>}
           </div>
 
           {/* Position */}
@@ -119,12 +131,12 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
               type="text"
               value={form.position}
               onChange={(e) => handleChange('position', e.target.value)}
-              className={`w-full rounded-lg border px-3 py-2.5 text-sm text-foreground placeholder:text-slate-400 transition-default focus:border-primary focus:ring-0 ${
+              className={`min-h-[44px] w-full rounded-lg border px-3 py-2.5 text-sm text-foreground placeholder:text-slate-400 transition-default focus:border-primary focus:ring-0 ${
                 errors.position ? 'border-red-400' : 'border-slate-200'
               }`}
               placeholder="e.g. Frontend Engineer"
             />
-            {errors.position && <p className="mt-1 text-xs text-red-500">{errors.position}</p>}
+            {errors.position && <p role="alert" className="mt-1 text-xs text-red-500">{errors.position}</p>}
           </div>
 
           {/* Status + Date row */}
@@ -137,7 +149,7 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
                 id="status"
                 value={form.status}
                 onChange={(e) => handleChange('status', e.target.value)}
-                className="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm text-foreground transition-default focus:border-primary focus:ring-0"
+                className="min-h-[44px] w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm text-foreground transition-default hover:border-slate-300 focus:border-primary focus:ring-0"
               >
                 {STATUSES.map((s) => (
                   <option key={s.value} value={s.value}>
@@ -155,12 +167,12 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
                 type="date"
                 value={form.date_applied}
                 onChange={(e) => handleChange('date_applied', e.target.value)}
-                className={`w-full rounded-lg border px-3 py-2.5 text-sm text-foreground transition-default focus:border-primary focus:ring-0 ${
+                className={`min-h-[44px] w-full rounded-lg border px-3 py-2.5 text-sm text-foreground transition-default focus:border-primary focus:ring-0 ${
                   errors.date_applied ? 'border-red-400' : 'border-slate-200'
                 }`}
               />
               {errors.date_applied && (
-                <p className="mt-1 text-xs text-red-500">{errors.date_applied}</p>
+                <p role="alert" className="mt-1 text-xs text-red-500">{errors.date_applied}</p>
               )}
             </div>
           </div>
