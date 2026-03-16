@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import delete, select
 
 from app.auth import hash_password
-from app.auth_routes import DEMO_EMAIL, router as auth_router
+from app.auth_routes import DEMO_EMAIL, DEMO_MODE, router as auth_router
 from app.database import async_session
 from app.models import ApplicationStatus, JobApplication
 from app.routes import router
@@ -73,10 +73,12 @@ async def periodic_demo_reset() -> None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await seed_demo_user()
-    task = asyncio.create_task(periodic_demo_reset())
+    if DEMO_MODE:
+        await seed_demo_user()
+        task = asyncio.create_task(periodic_demo_reset())
     yield
-    task.cancel()
+    if DEMO_MODE:
+        task.cancel()
 
 
 app = FastAPI(title="Job Application Tracker", version="1.0.0", lifespan=lifespan)
