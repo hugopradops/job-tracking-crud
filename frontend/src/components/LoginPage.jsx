@@ -87,29 +87,31 @@ export default function LoginPage({ onLogin }) {
           {/* Subtitle with highlighter + hand-drawn arrow */}
           <p className="mt-3 text-sm font-medium text-slate-400">
             Track your job applications, from{' '}
-            <span className="highlight-blue font-hand text-lg font-semibold text-blue-600">
-              applied
-            </span>
-            <span className="arrow-hand">
-              <svg viewBox="0 0 80 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M2 8c6-2 12-1 18-1s12 1 18 0 12-2 18-1 12 2 17 1"
-                  stroke="#94a3b8"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeDasharray="4 3"
-                />
-                <path
-                  d="M68 3l7 4.5-7 4"
-                  stroke="#94a3b8"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-            <span className="highlight-green font-hand text-lg font-semibold text-green-600">
-              offer
+            <span className="inline-flex items-center whitespace-nowrap">
+              <span className="highlight-blue font-hand text-lg font-semibold text-blue-600">
+                applied
+              </span>
+              <span className="arrow-hand">
+                <svg viewBox="0 0 80 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M2 8c6-2 12-1 18-1s12 1 18 0 12-2 18-1 12 2 17 1"
+                    stroke="#94a3b8"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeDasharray="4 3"
+                  />
+                  <path
+                    d="M68 3l7 4.5-7 4"
+                    stroke="#94a3b8"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="highlight-green font-hand text-lg font-semibold text-green-600">
+                offer
+              </span>
             </span>
           </p>
 
