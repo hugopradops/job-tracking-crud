@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  button,
+  a,
+  select,
+  input[type='checkbox'],
+  input[type='radio'] {
+    cursor: pointer;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .transition-default {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  /* Highlighter mark effect */
+  .highlight-blue {
+    background: linear-gradient(
+      104deg,
+      rgba(59, 130, 246, 0) 0.9%,
+      rgba(59, 130, 246, 0.25) 2.4%,
+      rgba(59, 130, 246, 0.18) 5.8%,
+      rgba(59, 130, 246, 0.15) 93%,
+      rgba(59, 130, 246, 0.25) 96%,
+      rgba(59, 130, 246, 0) 98%
+    );
+    padding: 2px 6px;
+    border-radius: 3px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .highlight-green {
+    background: linear-gradient(
+      104deg,
+      rgba(34, 197, 94, 0) 0.9%,
+      rgba(34, 197, 94, 0.25) 2.4%,
+      rgba(34, 197, 94, 0.18) 5.8%,
+      rgba(34, 197, 94, 0.15) 93%,
+      rgba(34, 197, 94, 0.25) 96%,
+      rgba(34, 197, 94, 0) 98%
+    );
+    padding: 2px 6px;
+    border-radius: 3px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Subtle paper texture on background */
+  .bg-paper {
+    background-color: #FAFAF8;
+  }
+
+  /* Dot grid background like math paper */
+  .bg-dots {
+    background-color: #FAFAF8;
+    background-image: radial-gradient(circle, #d4d4d4 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Hand-drawn dashed arrow */
+  .arrow-hand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 2px;
+  }
+
+  .arrow-hand svg {
+    height: 14px;
+    width: 60px;
+  }
+}
