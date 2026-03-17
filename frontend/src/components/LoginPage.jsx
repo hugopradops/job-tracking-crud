@@ -2,21 +2,19 @@ import { useState, useEffect } from 'react';
 import { Briefcase, Mail, Lock, Loader2, AlertCircle, Info, Copy, Check, UserPlus } from 'lucide-react';
 import { getSetupStatus } from '../api/auth';
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, isDemo }) {
   const [mode, setMode] = useState(null); // null until loaded, 'setup' | 'signin'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(null);
-  const [isDemo, setIsDemo] = useState(false);
   const [checkingSetup, setCheckingSetup] = useState(true);
 
   useEffect(() => {
     getSetupStatus()
-      .then(({ setup_complete, demo }) => {
+      .then(({ setup_complete }) => {
         setMode(setup_complete ? 'signin' : 'setup');
-        setIsDemo(!!demo);
       })
       .catch(() => {
         setMode('signin');
@@ -80,7 +78,7 @@ export default function LoginPage({ onLogin }) {
           <div className="flex items-center justify-center gap-3">
             <Briefcase className="h-9 w-9 text-primary" strokeWidth={2} />
             <span className="text-2xl font-bold tracking-tight text-foreground">
-              Job Application Tracker
+              {isDemo ? 'Demo - ' : ''}Job Application Tracker
             </span>
           </div>
 

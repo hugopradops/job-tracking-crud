@@ -1,12 +1,12 @@
 import { Briefcase, LogOut } from 'lucide-react';
 
-export default function Header({ user, onLogout }) {
+export default function Header({ user, onLogout, isDemo }) {
   return (
     <header className="w-full border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 sm:px-6">
         <Briefcase className="h-7 w-7 text-primary" strokeWidth={2} />
         <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-          Job Application Tracker
+          {isDemo ? 'Demo - ' : ''}Job Application Tracker
         </h1>
 
         {user && (

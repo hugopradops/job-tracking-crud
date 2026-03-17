@@ -13,7 +13,7 @@ import {
   updateApplication,
   deleteApplication,
 } from './api/applications';
-import { login, register, getMe } from './api/auth';
+import { login, register, getMe, getSetupStatus } from './api/auth';
 
 function Toast({ message, type, onDismiss }) {
   if (!message) return null;
@@ -47,6 +47,20 @@ export default function App() {
   const [submitting, setSubmitting] = useState(false);
   const [toast, setToast] = useState({ message: '', type: 'success' });
   const [fetchError, setFetchError] = useState(null);
+  const [isDemo, setIsDemo] = useState(false);
+
+  // Check demo mode on mount
+  useEffect(() => {
+    getSetupStatus()
+      .then(({ demo }) => {
+        const demoMode = !!demo;
+        setIsDemo(demoMode);
+        document.title = demoMode
+          ? 'Demo - Job Application Tracker'
+          : 'Job Application Tracker';
+      })
+      .catch(() => {});
+  }, []);
 
   // Validate token on mount
   useEffect(() => {
@@ -167,13 +181,13 @@ export default function App() {
 
   // Not authenticated — show login
   if (!user) {
-    return <LoginPage onLogin={handleLogin} />;
+    return <LoginPage onLogin={handleLogin} isDemo={isDemo} />;
   }
 
   // Authenticated — show dashboard
   return (
     <div className="bg-paper min-h-screen">
-      <Header user={user} onLogout={handleLogout} />
+      <Header user={user} onLogout={handleLogout} isDemo={isDemo} />
 
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         {/* Stats */}
