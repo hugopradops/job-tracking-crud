@@ -14,10 +14,10 @@ from app.routes import router
 from app.user_model import User
 
 DEMO_SAMPLES = [
-    ("Google", "Software Engineer", ApplicationStatus.applied, date(2026, 3, 1), "Applied through careers page"),
-    ("Stripe", "Frontend Developer", ApplicationStatus.interview, date(2026, 3, 5), "Phone screen scheduled"),
-    ("Shopify", "Fullstack Engineer", ApplicationStatus.offer, date(2026, 3, 10), "Offer received!"),
-    ("Meta", "Backend Engineer", ApplicationStatus.rejected, date(2026, 3, 3), "Didn't pass the final round"),
+    ("Steam (Valve)", "Intern Developer", ApplicationStatus.applied, date(2026, 3, 1), "Applied via their careers page"),
+    ("Linus Media Group", "IT Support Technician", ApplicationStatus.interview, date(2026, 3, 5), "Technical interview next week"),
+    ("Mozilla Firefox", "Junior Developer", ApplicationStatus.offer, date(2026, 3, 10), "Offer received! Open source dream"),
+    ("Discord", "Game Engine Developer", ApplicationStatus.rejected, date(2026, 3, 3), "Got to final round, super close"),
 ]
 
 
