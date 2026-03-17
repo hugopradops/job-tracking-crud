@@ -19,3 +19,6 @@ backend/app/__pycache__/
 
 # OS
 .DS_Store
+
+# Local dev overrides (port bindings for local testing)
+docker-compose.override.yml

@@ -25,7 +25,7 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
       setForm({
         company: application.company || '',
         position: application.position || '',
-        status: application.status || 'Applied',
+        status: application.status || 'applied',
         date_applied: application.date_applied
           ? application.date_applied.split('T')[0]
           : '',
@@ -36,6 +36,15 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
     }
     setErrors({});
   }, [application, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -65,15 +74,6 @@ export default function ApplicationModal({ isOpen, onClose, onSubmit, applicatio
   }
 
   const isEdit = !!application;
-
-  useEffect(() => {
-    if (!isOpen) return;
-    function handleKeyDown(e) {
-      if (e.key === 'Escape') onClose();
-    }
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
 
   return (
     <div
